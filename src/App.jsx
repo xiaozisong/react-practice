@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.scss'
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
@@ -99,9 +99,16 @@ const arr = [
 
 export default function App() {
   // ----------------------------------------------- LIST -----------------------------------
-const [list, setList] = useState(arr),
+const [list, setList] = useState(() => {
+  return JSON.parse(localStorage.getItem('list')) || arr
+}) // 本地持久化
+
+useEffect(() => {
+  localStorage.setItem('list', JSON.stringify(list))
+}, [list])
+
 // 修改单项的checked属性
-changeState = (id) => {
+const changeState = (id) => {
   setList(
     list.map(item => {
       if (item.id === id) {
@@ -114,9 +121,9 @@ changeState = (id) => {
       }
     })
   )
-},
+}
 // 处理是否全选
-handleSelectAll = (isAll) => {
+const handleSelectAll = (isAll) => {
   console.log(isAll);
   setList(
     list.map(item => {
