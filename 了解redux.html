@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <script>
+    /* 
+      redux 是 Facebook 提出来的flux(函数式编程)架构和 reducer思想组合出现的 
+      redux 中有三个概念
+      1. store 可以理解成管理者
+      2. action 理解为要做的事
+      3. reducer 理解为做事的人(老板的手下)
+    */
+    // action就是一个简单的js对象，但是不能缺少type属性，里面可以加入payload(载荷，额外参数) 
+    const addTodo = {
+      type: 'addTodo' 
+    }
+
+
+    // 像以下重复的对象可以抽到一个函数中，这个函数也叫做 action-creator
+    function addMoneyCreator(money) {
+       const moneyObj = {
+        type: 'addMoney',
+        money
+      }
+      return moneyObj
+    }
+
+    const addMoney = addMoneyCreator(1000)
+
+    const addMoney2 = addMoneyCreator(2)
+
+    const addMoney3 = addMoneyCreator(4)
+  </script>
+</body>
+</html>
