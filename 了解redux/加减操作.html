@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1>现在的结果是<span id="result">0</span></h1>
+    <button id="btn1">加3</button>
+    <button id="btn2">加6</button>
+    <button id="btn3">减2</button>
+    <button id="btn4">减4</button>
+  </div>
+  <script src="../node_modules/redux/dist/redux.js"></script>
+  <script>
+    const { createStore } = Redux
+
+    // 获取元素
+    const res = document.querySelector('#result')
+    const btn1 = document.querySelector('#btn1')
+    const btn2 = document.querySelector('#btn2')
+    const btn3 = document.querySelector('#btn3')
+    const btn4 = document.querySelector('#btn4')
+
+    function reducer(prevState = 0, action) {
+      switch(action.type) {
+        case 'add':
+          return prevState + action.count
+        default:
+          return prevState
+      }
+    }
+    // 创建仓库
+    const store = createStore(reducer)
+
+    res.innerHTML = store.getState()
+
+    btn1.addEventListener('click', function () {
+       // 派发任务
+      store.dispatch({
+        type: 'add',
+        count: 3
+      })
+      res.innerHTML = store.getState()
+    })
+
+    btn2.addEventListener('click', function () {
+       // 派发任务
+      store.dispatch({
+        type: 'add',
+        count: 6
+      })
+      res.innerHTML = store.getState()
+    })
+  </script>
+</body>
+</html>

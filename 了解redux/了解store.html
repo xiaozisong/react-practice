@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <!-- 第一步先导包 -->
+  <script src="../node_modules/redux/dist/redux.js"></script>
+  <script>
+    // 从Redux中解构出来创建store的方法, Redux是一个对象，对象中有createStore方法
+    const { createStore } = Redux
+
+    // 创建一个员工
+    function reducer(prevState = 0, action) {
+       switch(action.type) {
+         case 'add':
+           return prevState + action.count
+         default: 
+           return prevState
+       }
+    }
+
+    // 必须给老板一个员工，不然会报错，将创建好的员工给到老板
+    const store = createStore(reducer) // 成功创建了一个store
+
+    console.log(store.getState()) // getState是获取仓库的值, 0
+
+    store.dispatch({ // 分发的是一个action，而action是一个对象，所以要派发一个对象过去
+      type: 'add',
+      count: 3
+    })
+
+    console.log(store.getState()) // 3
+  </script>  
+</body>
+</html>

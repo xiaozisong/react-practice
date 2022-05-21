@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <script>
+    /* 
+      理解reducer：redux中，reducer代表执行任务的人，reducer的单词与reduce比较相似，也是来源于reduce
+      reducer的定义：reducer是一个纯函数，纯函数的理解就是 固定的操作 会返回固定的值 并且为了性能方面考虑，react做了缓存
+        并且，reducer是不可以直接修改状态的，react中遵循状态不可变，也是为了性能考虑
+      reducer的使用方式： reducer有两个参数，第一个参数为prevState，第二个参数为action
+        1. params1：prevState代表的是上一次的状态
+        2. params2：action代表的是要执行的事件
+    */
+    // 理解纯函数 固定的操作返回固定的值 并且纯函数不会对外部数据造成影响
+    function demo(a, b) {
+       return a + b // 返回固定的值，如果不纯，那么在后面加上一个随机数，这样固定的操作，就不会返回固定的值
+    }
+    demo(1, 2) // 固定的操作
+    // 不会对外部数据造成影响
+
+    let a = 10
+    function test() {
+       a = 100
+    }
+    test() // 这样就会对外部数据造成影响
+
+    // 定义一个reducer 进行加减操作, 使用与reduce类似，在reduce方法中，只要在第二个参数中给定初始值即可
+    // 但是在reducer中，给定初始值是给形参默认值
+    function computed(pervState = 0, action) { // 使用if else的写法比较啰嗦麻烦，所以在reducer中更推荐使用switch
+      if(action.type === 'add') {
+        return pervState + action.num
+      } else if(action.type === 'sub') {
+        return pervState - action.num
+      } else {
+        return pervState
+      }
+    }
+    // switch写法
+    function fn(pervState = 0, action) {
+       switch(action.type){
+         case 'add':
+           return pervState + action.num
+         case 'sub':
+           return pervState - action.num
+         default: 
+           return pervState
+       }
+    }
+  </script>
+</body>
+</html>
