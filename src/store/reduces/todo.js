@@ -26,7 +26,34 @@ export default function todos(prevState = list, action) {
           flag: false
         }
       ]
+    case 'checkAll':
+      return prevState.map(item => {
+        return {
+          ...item,
+          flag: action.flag
+        }
+      })
+    case 'editTodo':
+      return prevState.map(item => {
+        if(item.id === action.id) {
+          return {
+            ...item,
+            name: action.name
+          }
+        } else {
+          return item
+        }
+      })
+    case 'clearCompleted':
+      return prevState.filter(item => !item.flag)
     default:
       return prevState
   }
 }
+
+/* 
+  filter的reduces是一个数组，通过数组遍历
+  点击一项li切换状态
+  main组件要拿到这个状态，从而进行过滤
+
+*/
