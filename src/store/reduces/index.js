@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import todos from './todo'
-import filters from './filters'
+import channel from './channel'
+import news from './news'
 export default combineReducers({
-  todos,
-  filters
+  channel,
+  news
 })
