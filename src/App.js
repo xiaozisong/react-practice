@@ -8,6 +8,7 @@ import Search from './components/Search'
 import Hot from './components/Hot'
 import NotFound from './components/NotFound'
 import './index.css'
+import Test from './components/Test'
 export default function App() {
     return (
       // 使用方式, 使用路由组件进行包裹
@@ -33,7 +34,7 @@ export default function App() {
         <NavLink exact activeClassName='active-link' to='/'>主页</NavLink> &nbsp;&nbsp;
         <NavLink activeClassName='active-link' to='/search'>搜索</NavLink> &nbsp;&nbsp;
         <NavLink activeClassName='active-link' to='/hot'>热门推荐</NavLink> &nbsp;&nbsp;
-        
+        <Test></Test>
         {/*
           Route组件的使用方式:
             path: 路由路径 component: 要显示的组件
